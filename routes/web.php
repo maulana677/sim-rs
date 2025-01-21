@@ -26,17 +26,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+    // Middleware untuk mengelola Pasien (hanya untuk super_admin dan admin)
+    Route::middleware('can:manage patients')->group(function () {
+        Route::resource('patients', PasienController::class);
+    });
 
-// Middleware untuk mengelola Pasien (hanya untuk super_admin dan admin)
-Route::middleware('can:manage patients')->group(function () {
-    Route::resource('patients', PasienController::class);
-});
-
-// Middleware untuk melihat Pasien (hanya untuk super_admin, admin, dan nurse)
-Route::middleware('can:view patients')->group(function () {
-    Route::resource('patients', PasienController::class);
+    // Middleware untuk melihat Pasien (hanya untuk super_admin, admin, dan nurse)
+    Route::middleware('can:view patients')->group(function () {
+        Route::resource('patients', PasienController::class);
+    });
 });
 
 require __DIR__ . '/auth.php';

@@ -10,11 +10,6 @@ class PasienController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function __construct()
-    {
-        $this->middleware('can:manage patients')->only(['create', 'store', 'edit', 'update', 'destroy']);
-        $this->middleware('can:view patients')->only(['index', 'show']);
-    }
 
     public function index()
     {
@@ -55,7 +50,7 @@ class PasienController extends Controller
         $pasien->no_identitas = $request->no_identitas;
         $pasien->save();
 
-        return redirect()->route('pasiens.index')->with('success', 'Pasien berhasil didaftarkan.');
+        return redirect()->route('admin.patients.index')->with('success', 'Pasien berhasil didaftarkan.');
     }
 
     /**
@@ -63,6 +58,7 @@ class PasienController extends Controller
      */
     public function show(string $id)
     {
+        $pasien = Pasien::findOrFail($id);
         return view('admin.pasien.show', compact('pasien'));
     }
 
@@ -100,7 +96,7 @@ class PasienController extends Controller
         $pasien->no_identitas = $request->no_identitas;
         $pasien->save();
 
-        return redirect()->route('pasiens.index')->with('success', 'Data pasien berhasil diperbarui.');
+        return redirect()->route('admin.patients.index')->with('success', 'Data pasien berhasil diperbarui.');
     }
 
     /**

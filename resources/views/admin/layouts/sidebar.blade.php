@@ -52,16 +52,16 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="{{ setSidebarActive(['dashboard']) }}">
-                <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-fire">
+            <li class="{{ setSidebarActive(['admin.dashboard']) }}">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-fire">
                     </i><span>Dashboard</span>
                 </a>
             </li>
 
             <li class="menu-header">Starter</li>
 
-            <li class="{{ setSidebarActive(['pasiens.*']) }}">
-                <a class="nav-link" href="{{ route('patients.index') }}"><i class="fas fa-address-card"></i>
+            <li class="{{ setSidebarActive(['admin.pasiens.*']) }}">
+                <a class="nav-link" href="{{ route('admin.patients.index') }}"><i class="fas fa-address-card"></i>
                     <span>Pasien</span>
                 </a>
             </li>
