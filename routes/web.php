@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasienController;
@@ -19,22 +20,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-    Route::middleware(['role:Admin|Regis'])->group(function () {
-        Route::resource('pasiens', PasienController::class);
-    });
+Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
-    Route::middleware(['permission:view patient'])->group(function () {
-        Route::get('/pasiens/{id}', [PasienController::class, 'show'])->name('pasiens.show');
-    });
+
+// Middleware untuk mengelola Pasien (hanya untuk super_admin dan admin)
+Route::middleware('can:manage patients')->group(function () {
+    Route::resource('patients', PasienController::class);
+});
+
+// Middleware untuk melihat Pasien (hanya untuk super_admin, admin, dan nurse)
+Route::middleware('can:view patients')->group(function () {
+    Route::resource('patients', PasienController::class);
 });
 
 require __DIR__ . '/auth.php';

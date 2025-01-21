@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -14,16 +15,33 @@ class RoleAndPermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        // Buat Role
-        $admin = Role::create(['name' => 'Admin']);
-        $regis = Role::create(['name' => 'Regis']);
+        $permissions = [
+            'manage patients',
+            'view patients',
+        ];
 
-        // Buat Permission
-        Permission::create(['name' => 'create patient']);
-        Permission::create(['name' => 'view patient']);
+        // Membuat permission
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
 
-        // Assign Permission ke Role
-        $admin->givePermissionTo(['create patient', 'view patient']);
-        $regis->givePermissionTo(['create patient']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminPermissions = ['manage patients'];
+        $adminRole->syncPermissions($adminPermissions);
+
+        $nurseRole = Role::firstOrCreate(['name' => 'nurse']);
+        $nursePermissions = ['view patients'];
+        $nurseRole->syncPermissions($nursePermissions);
+
+        // Membuat Super Admin (Admin Utama)
+        $superAdminRole = Role::firstOrCreate(['name' => 'super_admin']);
+
+        $user = User::create([
+            'name' => 'Super Admin RS',
+            'email' => 'superadmin@gmail.com',
+            'password' => bcrypt('12345678')
+        ]);
+
+        $user->assignRole($superAdminRole);
     }
 }
