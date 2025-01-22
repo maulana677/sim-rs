@@ -9,7 +9,7 @@
 
 ## Panduan Penggunaan Website
 
-1. Clone project di repositori public
+1. <b>Clone project di repositori public</b>
 
 -   Buka terminal atau command prompt.
 -   Kloning repository dari GitHub dengan menggunakan perintah git clone.
