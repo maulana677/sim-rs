@@ -16,7 +16,7 @@
 
     <b>git clone https://github.com/maulana677/sim-rs</b>.
 
-2. Install Dependensi dengan Composer
+2. <b>Install Dependensi dengan Composer</b>
 
 -   Masuk ke direktori proyek yang baru saja Anda kloning,
 
@@ -26,7 +26,7 @@
 
     <b>composer install</b>
 
-3. Konfigurasi File .env
+3. <b>Konfigurasi File .env</b>
 
 -   Salin file .env.example menjadi .env
 
@@ -34,13 +34,13 @@
 
 -   Buka file .env dan sesuaikan konfigurasi yang diperlukan seperti koneksi database, dll.
 
-4. Generate Application Key
+4. <b>Generate Application Key</b>
 
 -   Generate application key yang digunakan oleh Laravel untuk enkripsi.
 
     <b>php artisan key:generate</b>
 
-5. Migrate Database
+5. <b>Migrate Database</b>
 
 -   Jalankan migrasi untuk membuat tabel-tabel di database sesuai dengan skema yang telah didefinisikan.
 
@@ -48,14 +48,14 @@
 
     <b>php artisan db:seed</b>
 
-6. Install Dependencies
+6. <b>Install Dependencies</b>
 
 -   Jalankan perintah
 
     <b>npm install</b>
     <b>npm run dev</b>
 
-7. Jalankan Server Development
+7. <b>Jalankan Server Development</b>
 
 -   Untuk menjalankan server development Laravel, gunakan perintah berikut.
 
