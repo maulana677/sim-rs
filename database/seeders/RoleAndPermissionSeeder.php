@@ -36,9 +36,6 @@ class RoleAndPermissionSeeder extends Seeder
         $nursePermissions = ['view patients'];
         $nurseRole->syncPermissions($nursePermissions);
 
-        // Membuat Super Admin (Admin Utama)
-        $superAdminRole = Role::firstOrCreate(['name' => 'super_admin']);
-
         $user = User::create([
             'name' => 'Super Admin RS',
             'email' => 'superadmin@gmail.com',

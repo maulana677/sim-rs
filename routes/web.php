@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     // Middleware untuk melihat Pasien (hanya untuk super_admin, admin, dan nurse)
     Route::middleware('can:view patients')->group(function () {
-        Route::resource('patients', PasienController::class);
+        Route::resource('patients', PasienController::class)->only(['index', 'show']);
     });
 });
 
