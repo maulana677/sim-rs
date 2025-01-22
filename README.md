@@ -12,12 +12,18 @@
 1. Clone project di repositori public
 
 -   Buka terminal atau command prompt.
--   Kloning repository dari GitHub dengan menggunakan perintah git clone. <b>git clone https://github.com/maulana677/sim-rs</b>.
+-   Kloning repository dari GitHub dengan menggunakan perintah git clone.
+
+    <b>git clone https://github.com/maulana677/sim-rs</b>.
 
 2. Install Dependensi dengan Composer
 
--   Masuk ke direktori proyek yang baru saja Anda kloning, <b>cd sim-rs</b> atau sesuai dengan nama folder yang anda buat.
+-   Masuk ke direktori proyek yang baru saja Anda kloning,
+
+    <b>cd sim-rs</b> atau sesuai dengan nama folder yang anda buat.
+
 -   Jalankan Composer untuk menginstal semua dependensi PHP yang diperlukan oleh Laravel.
+
     <b>composer install</b>
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
